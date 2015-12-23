@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="myAPP">
+  <head>
+    <meta charset="utf-8">
+    <title>fake douban</title>
+        
+    <script type="text/javascript" src="javascripts/angular.min.js"></script>
+    <script type="text/javascript" src="javascripts/underscore.min.js"></script>
+    <script type="text/javascript" src="javascripts/data.js"></script>
+    <script type="text/javascript" src="javascripts/app.js"></script>
+    <link rel="stylesheet" href="css/app.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body ng-controller="mainController">
+  	
+    <div id='books'>
+      <h1 id="tag-title">所有图书 (包含50本书的data.books加载书籍数据)</h1>
+      <br />
+      <div class="book-list">
+  
+      	<div class="book" ng-repeat="book in books">
+      	
+          <div class="book-img-part"><img src="{{book.images.small}}" alt="{{book.title}}" /></div>
+          <div class="book-description-part">
+            <h4 class='bookname' data-detail="{{book.url}}">{{book.title}}</h4>
+            <div class='book-info'>
+            <p class="authors"><span class="author" ng-repeat="author in book.author">{{author}}/</span></p>
+            <p class="price"><span>{{book.price}}</span>起</p>
+            	<span class='publisher' >{{book.publisher}}</span>
+							<span class='pubdate' >{{book.pubdate}}</span></div>
+            <p class="tags"><span class=tag ng-repeat="tag in book.tags">{{tag.name}}  </span></p>
+          </div>
+      </div>
+    </div> 
+        	<br />
+        	<button class='load-more' ng-click="loadmorebook()">加载更多</button>
+        	<a href="javascript:scrollTo(0,0)" hidefocus="true"><div id="top">顶部</top></div></a>
+       
+  </div>
+  <div class="nav">
+			<img class="logo" src="img/icon.jpg" />
+      <div class="nav-items" >搜索书籍</div>
+      <div class='nav-search'>
+        <div  ng-controller="SelectCtrl">
+        	<select class="selected" ng-model="selectedTip"  ng-options="obj.name for obj in selecttip"></select>
+        	<select class="selected" ng-model="selectedGenre">
+        		<option ng-repeat="label in selecttip[selectedTip.id].interest">{{label}}</option>
+    			</select>
+        	<input type ="text" id="nav-search-content" ng-model="searchContent" placeholder="搜索书籍" /> 
+          <button id='nav-search-btn' ng-click="searchbook(selectedTip,selectedGenre,searchContent)">搜索</button> 
+        </div>
+    	</div>
+    </div>
+  <div id="book-err">
+  	<p id="book-err-info">没有符合要求的书籍~~~~(>_<)~~~~</p>
+  	<button id="back" ng-click="backctrl()">返回</button>
+  	
+  </div>
+  
+ 
+  </body>
+</html>
