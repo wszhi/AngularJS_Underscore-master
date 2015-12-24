@@ -42,11 +42,11 @@
       <div class='nav-search'>
         <div  ng-controller="SelectCtrl">
         	<select class="selected" ng-model="selectedTip"  ng-options="obj.name for obj in selecttip"></select>
-        	<select class="selected" ng-model="selectedGenre">
+        	<select class="selected" ng-model="selectedGenre" ng-click="searchbookinlist(selectedTip,selectedGenre)">
         		<option ng-repeat="label in selecttip[selectedTip.id].interest">{{label}}</option>
     			</select>
         	<input type ="text" id="nav-search-content" ng-model="searchContent" placeholder="搜索书籍" /> 
-          <button id='nav-search-btn' ng-click="searchbook(selectedTip,selectedGenre,searchContent)">搜索</button> 
+          <button id='nav-search-btn' ng-click="searchbook(searchContent)">搜索</button> 
         </div>
     	</div>
     </div>
