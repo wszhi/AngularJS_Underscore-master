@@ -42,7 +42,7 @@
       <div class='nav-search'>
         <div  ng-controller="SelectCtrl">
         	<select class="selected" ng-model="selectedTip"  ng-options="obj.name for obj in selecttip"></select>
-        	<select class="selected" ng-model="selectedGenre" ng-click="searchbookinlist(selectedTip,selectedGenre)">
+        	<select class="selected" ng-model="selectedGenre" ng-change="searchbookinlist(selectedTip,selectedGenre)">
         		<option ng-repeat="label in selecttip[selectedTip.id].interest">{{label}}</option>
     			</select>
         	<input type ="text" id="nav-search-content" ng-model="searchContent" placeholder="搜索书籍" /> 
