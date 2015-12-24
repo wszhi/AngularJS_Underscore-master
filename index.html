@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="css/app.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body ng-controller="mainController">
-  	
+
+
     <div id='books'>
       <h1 id="tag-title">所有图书 (包含50本书的data.books加载书籍数据)</h1>
       <br />
@@ -50,12 +51,14 @@
         </div>
     	</div>
     </div>
-  <div id="book-err">
-  	<p id="book-err-info">没有符合要求的书籍~~~~(>_<)~~~~</p>
-  	<button id="back" ng-click="backctrl()">返回</button>
+  <div  id="book-err" ng-show="searchvisible">
+  	<div ng-show="isShow">没有符合要求的书籍~~~~(>_<)~~~~</div>
+    <div  ng-hide="isShow">没有更多的书籍了~~~~(>_<)~~~~</div>
+  	<button id="back" ng-click="showorhide()">返回</button>
   	
   </div>
   
  
+
   </body>
 </html>
