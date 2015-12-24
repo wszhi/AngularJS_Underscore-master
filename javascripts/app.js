@@ -10,22 +10,28 @@
     $scope.backctrl=function(){
     	document.getElementById("book-err").style.display="none";
     }
-    
-   	$scope.searchbook = function(selectedTip,selectedGenre,searchContent){
+    $scope.searchbookinlist = function(selectedTip,selectedGenre){
+      var bookbuf=_.filter(data.books, function(onebook){ 
+        if(selectedTip.name == "出版社"){
+          return  onebook.publisher == selectedGenre;
+        }
+        if(selectedTip.name  == "标签"){
+          var tagif=_.some(onebook.tags, function(tagg){ return tagg.name == selectedGenre; });
+          if(tagif)
+            return onebook;
+        }
+        
+      });
+      if(bookbuf != "")
+        $scope.books = bookbuf;
+     
+   }
+   	$scope.searchbook = function(searchContent){
    	  var bookbuf=_.filter(data.books, function(onebook){ 
         if(searchContent != null){
           if(onebook.title.indexOf(searchContent) > 0)
             return onebook;
         }
-   	  	if(selectedTip.name == "出版社"){
-   	  		return  onebook.publisher == selectedGenre;
-   	  	}
-   	  	if(selectedTip.name  == "标签"){
-   	  		var tagif=_.some(onebook.tags, function(tagg){ return tagg.name == selectedGenre; });
-   	  		if(tagif)
-   	  			return onebook;
-   	  	}
-   	  	
    	  });
    	  if(bookbuf != "")
    	  	$scope.books = bookbuf;
