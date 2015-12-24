@@ -26,7 +26,7 @@
         }
         
       });
-      if(bookbuf != "")
+      if(!_.isEmpty(bookbuf))
         $scope.books = bookbuf;
      
    }
